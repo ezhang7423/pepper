@@ -14,13 +14,5 @@ const urls = ["https://github.com/44A44", "https://github.com/a-vinod", "https:/
 
 
 urls.forEach((url) => {
-    axios.get(url)
-        .then(res => {
-            const $ = cheerio.load(res.data)
-            contributions = $(".f4.text-normal.mb-2")
-            store.writeContributions(url)
-        })
-        .catch(err => {
-            console.log(err);
-        })
+    store.writeContributions(url)
 })

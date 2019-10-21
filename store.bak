@@ -3,7 +3,7 @@ const cheerio = require('cheerio');
 
 function actualWrite(years) {
     for (let i = 0; i < years.length; i++) {
-        let newUrl = "https://github.com" + years[i].attribs.href;
+        let newUrl = years[i].attribs.href;
         axios.get(newUrl)
             .then(res => {
                 $ = cheerio.load(res.data)
