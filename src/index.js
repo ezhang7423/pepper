@@ -1,6 +1,6 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
-
+const store = require("./store.js")
 
 const urls = ["https://github.com/44A44", "https://github.com/a-vinod", "https://github.com/aaroncross202", "https://github.com/Adarsha58", "https://github.com/aeshapar", "https://github.com/aezhao065", "https://github.com/akelkordy", "https://github.com/AlejandroRR16", "https://github.com/alexmeigz", "https://github.com/alfredmchen", "https://github.com/alonkatzcs", "https://github.com/Alsoro", "https://github.com/andrewpengucsb", "https://github.com/angelinagrace2", "https://github.com/AnishaKabir", "https://github.com/annabellezzy", "https://github.com/anqi0420", "https://github.com/anqilin11", "https://github.com/Anshuman-UCSB", "https://github.com/antguzman636", "https://github.com/Anthonypella", "https://github.com/aprilsanchez", "https://github.com/arielyhsieh", "https://github.com/ashleshag", "https://github.com/Atziry-M", "https://github.com/austinmacmath", "https://github.com/banannago", "https://github.com/BenLuong", "https://github.com/bennytrac", "https://github.com/bernardogonzalez01",
 "https://github.com/Bernstern", "https://github.com/Bluuuumo", "https://github.com/bryanaxu", "https://github.com/Bryanz2019", "https://github.com/buhraian", "https://github.com/calvitronic", "https://github.com/carolinehhuang", "https://github.com/cerulity", "https://github.com/chaewon-shin", "https://github.com/CharityHsu", "https://github.com/Charlie0916", "https://github.com/Chasewu123", "https://github.com/chenlin28", "https://github.com/Chihlun", "https://github.com/Christine-ong", "https://github.com/ChristineOng01", "https://github.com/christopherbarnett", "https://github.com/chucklesbao", "https://github.com/cilense", "https://github.com/CL6385", "https://github.com/claystern", "https://github.com/cliffordxu", "https://github.com/connorrapelje", "https://github.com/cpmckim", "https://github.com/cs126", "https://github.com/d-x-lin", "https://github.com/DaisyWang526", "https://github.com/DanielEskander", "https://github.com/darrenchou1", "https://github.com/davisr2124",
@@ -18,7 +18,7 @@ urls.forEach((url) => {
         .then(res => {
             const $ = cheerio.load(res.data)
             contributions = $(".f4.text-normal.mb-2")
-            console.log(url.substring(19, url.length),  $(contributions[1]).text())
+            store.writeContributions(url)
         })
         .catch(err => {
             console.log(err);
