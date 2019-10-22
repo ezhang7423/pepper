@@ -7,4 +7,4 @@ requirements: node/npm, git
 * git clone https://github.com/ezhang7423/pepper.git
 * cd into directory
 * npm ci
-* node ./src/index2.js
+* node ./src/index.js username token orgName
