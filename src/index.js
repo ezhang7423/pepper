@@ -2,7 +2,28 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const store = require("./store.js")
 
-const urls = ["https://github.com/44A44", "https://github.com/a-vinod", "https://github.com/aaroncross202", "https://github.com/Adarsha58", "https://github.com/aeshapar", "https://github.com/aezhao065", "https://github.com/akelkordy", "https://github.com/AlejandroRR16", "https://github.com/alexmeigz", "https://github.com/alfredmchen", "https://github.com/alonkatzcs", "https://github.com/Alsoro", "https://github.com/andrewpengucsb", "https://github.com/angelinagrace2", "https://github.com/AnishaKabir", "https://github.com/annabellezzy", "https://github.com/anqi0420", "https://github.com/anqilin11", "https://github.com/Anshuman-UCSB", "https://github.com/antguzman636", "https://github.com/Anthonypella", "https://github.com/aprilsanchez", "https://github.com/arielyhsieh", "https://github.com/ashleshag", "https://github.com/Atziry-M", "https://github.com/austinmacmath", "https://github.com/banannago", "https://github.com/BenLuong", "https://github.com/bennytrac", "https://github.com/bernardogonzalez01",
+const username = process.argv[2];
+const token = process.argv[3];
+const org = process.argv[4];
+
+let orgURL = "https://api.github.com/orgs/" + org + "/members";
+axios.get(orgURL, {
+    auth: {
+        username: username,
+        password: token
+    }
+})
+    .then(res => {
+        res.data.forEach((user) => {
+            console.log(user.html_url);
+            store.writeContributions(user.html_url);
+        });
+    })
+    .catch(err => {
+        console.log(err);
+    });
+
+/*const urls = ["https://github.com/44A44", "https://github.com/a-vinod", "https://github.com/aaroncross202", "https://github.com/Adarsha58", "https://github.com/aeshapar", "https://github.com/aezhao065", "https://github.com/akelkordy", "https://github.com/AlejandroRR16", "https://github.com/alexmeigz", "https://github.com/alfredmchen", "https://github.com/alonkatzcs", "https://github.com/Alsoro", "https://github.com/andrewpengucsb", "https://github.com/angelinagrace2", "https://github.com/AnishaKabir", "https://github.com/annabellezzy", "https://github.com/anqi0420", "https://github.com/anqilin11", "https://github.com/Anshuman-UCSB", "https://github.com/antguzman636", "https://github.com/Anthonypella", "https://github.com/aprilsanchez", "https://github.com/arielyhsieh", "https://github.com/ashleshag", "https://github.com/Atziry-M", "https://github.com/austinmacmath", "https://github.com/banannago", "https://github.com/BenLuong", "https://github.com/bennytrac", "https://github.com/bernardogonzalez01",
 "https://github.com/Bernstern", "https://github.com/Bluuuumo", "https://github.com/bryanaxu", "https://github.com/Bryanz2019", "https://github.com/buhraian", "https://github.com/calvitronic", "https://github.com/carolinehhuang", "https://github.com/cerulity", "https://github.com/chaewon-shin", "https://github.com/CharityHsu", "https://github.com/Charlie0916", "https://github.com/Chasewu123", "https://github.com/chenlin28", "https://github.com/Chihlun", "https://github.com/Christine-ong", "https://github.com/ChristineOng01", "https://github.com/christopherbarnett", "https://github.com/chucklesbao", "https://github.com/cilense", "https://github.com/CL6385", "https://github.com/claystern", "https://github.com/cliffordxu", "https://github.com/connorrapelje", "https://github.com/cpmckim", "https://github.com/cs126", "https://github.com/d-x-lin", "https://github.com/DaisyWang526", "https://github.com/DanielEskander", "https://github.com/darrenchou1", "https://github.com/davisr2124",
 "https://github.com/DawitAboye", "https://github.com/DengxianYang", "https://github.com/dianamendezramos", "https://github.com/dibamirza", "https://github.com/DLohn", "https://github.com/dragonslayerintraining", "https://github.com/drzevia", "https://github.com/dshamtob", "https://github.com/eliotlipszyc", "https://github.com/EmilyyyLee", "https://github.com/encombhat", "https://github.com/esieng", "https://github.com/ezhang7423", "https://github.com/felixxyang", "https://github.com/gdx6666", "https://github.com/gracehsu2000", "https://github.com/hdinh77", "https://github.com/henriquedaponte", "https://github.com/hhu00", "https://github.com/hjhcharles66", "https://github.com/hmei97", "https://github.com/holdensmith30", "https://github.com/Hu-TianRui", "https://github.com/hunterlhxlin", "https://github.com/ishtiyaque", "https://github.com/ivangvozdanovic", "https://github.com/J-Miller1", "https://github.com/jake-garcia", "https://github.com/Jarmstrong845", "https://github.com/jasonpjackson",
 "https://github.com/jasunchen", "https://github.com/jay-red", "https://github.com/Jay145", "https://github.com/jdgarcia-cs", "https://github.com/Jechen27", "https://github.com/jianingsong97", "https://github.com/jiaqili980919", "https://github.com/jiaxianhu", "https://github.com/jijeon-sh", "https://github.com/JohnK-mi", "https://github.com/JohnnJudge", "https://github.com/josephquiroz23", "https://github.com/joshuavilela", "https://github.com/julianstevenbt", "https://github.com/junshuzhou", "https://github.com/jvoucsb", "https://github.com/jwangathan", "https://github.com/kenny-wang6", "https://github.com/khalidmihlar", "https://github.com/khoang1800", "https://github.com/kjin883", "https://github.com/konman2", "https://github.com/ksbenipal", "https://github.com/kunalhandaUCSB", "https://github.com/LeahhLi", "https://github.com/liaaaaran", "https://github.com/litingchu", "https://github.com/louieUCSB", "https://github.com/loypham", "https://github.com/LucienLuc",
@@ -15,4 +36,4 @@ const urls = ["https://github.com/44A44", "https://github.com/a-vinod", "https:/
 
 urls.forEach((url) => {
     store.writeContributions(url)
-})
+})*/
