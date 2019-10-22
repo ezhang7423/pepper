@@ -21,7 +21,7 @@ function actualWrite(years) {
                 else{
                     formattedData[userName] = [yr+' '+commits]
                 }
-                fs.writeFile("../data.json", JSON.stringify(formattedData), (err) => {
+                fs.writeFile("./data.json", JSON.stringify(formattedData), (err) => {
                     if (err) console.log(err);
                     console.log("Successfully Written to File.");
                   });
