@@ -9,9 +9,11 @@ fs.readFile(filePath, (err, data) =>{
     for (i = 0; i < keys.length; i++){
         console.log(keys[i])
         individualCommits = commits[keys[i]]
-        for (j = 0; j < individualCommits.length; j++){
-            console.log(individualCommits[j].substring(5, individualCommits[j].length)+' contribuitions in '+individualCommits[j].substring(0, 5))
+        indivKeys = Object.keys(individualCommits)
+        for (j = 0; j < indivKeys.length; j++){
+            console.log(individualCommits[indivKeys[j]] + ' contributions in '+ indivKeys[j])
         }
         console.log("\n")
     }
+    console.log(keys.length)
 })

@@ -16,12 +16,13 @@ function actualWrite(years) {
                 yr = yrAndCommits[16]
                 yr = yr.substring(0, yr.length-1)
                 if (formattedData[userName]){
-                    formattedData[userName].push(yr+' '+commits)
+                    formattedData[userName][yr] = commits
                 }
                 else{
-                    formattedData[userName] = [yr+' '+commits]
+                    formattedData[userName] = {};
+                    formattedData[userName][yr] = commits;
                 }
-                fs.writeFile("./data.json", JSON.stringify(formattedData), (err) => {
+                fs.writeFile("data.json", JSON.stringify(formattedData), (err) => {
                     if (err) console.log(err);
                     console.log("Successfully Written to File.");
                   });
