@@ -24,7 +24,7 @@ if (process.argv.length == 5) {
     })
     .then((users) => {
         users.forEach((user) => {
-            store.writeContributions(user.html_url);
+            store.writeContributions(user.html_url, org);
         });
     })
     .catch(err => {

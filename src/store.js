@@ -2,7 +2,7 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const fs = require('fs');
 let formattedData = {};
-function actualWrite(years) {
+function actualWrite(years, org) {
     for (let i = 0; i < years.length; i++) {
         let newUrl = "https://github.com" + years[i].attribs.href;
         axios.get(newUrl)
@@ -22,7 +22,7 @@ function actualWrite(years) {
                     formattedData[userName] = {};
                     formattedData[userName][yr] = commits;
                 }
-                fs.writeFile("data.json", JSON.stringify(formattedData), (err) => {
+                fs.writeFile("data/"+org.toString()+".json", JSON.stringify(formattedData), (err) => {
                     if (err) console.log(err);
                     console.log("Successfully Written to File.");
                   });
@@ -33,14 +33,14 @@ function actualWrite(years) {
     }
 }
 
-function writeContributions(url){
+function writeContributions(url, org){
     axios.get(url)
     .then(res => {
         $ = cheerio.load(res.data)
         let yearsList = $(".filter-list.small");
         let years = yearsList.find("li a");
 
-        actualWrite(years);
+        actualWrite(years, org);
     })
     .catch(err => {
         console.log(err);
