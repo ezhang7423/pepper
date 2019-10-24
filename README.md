@@ -1,4 +1,5 @@
 # pepper
+# https://ezhang7423.github.io/pepper/
 find the amount of commits in your github organizations
 
 ## installation
