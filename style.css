@@ -1,0 +1,12 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-transform: uppercase;
+    color: white;
+    background-color: rgba(30, 30, 30);
+}
+
+.title{
+    font-size: 60px;
+}
+
