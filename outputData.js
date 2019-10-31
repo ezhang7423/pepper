@@ -19,7 +19,7 @@ if (process.argv.length == 3){
             }
             console.log("\n")
         }
-        console.log(keys.length)
+        console.log(keys.length.toString(), "total people")
     })
 }
 else{
