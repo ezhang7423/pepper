@@ -56,7 +56,7 @@ if (process.argv.length == 3){
         top10 = filterToTop(top10, 5)
         console.log(top10)
         //expand top10 to actual contributions
-        //printContribuitions(top10)
+        printContribuitions(commits)
     })
 }
 else{
