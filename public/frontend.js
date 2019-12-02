@@ -1,27 +1,6 @@
-function loadJSON(callback) {
-
-    var xobj = new XMLHttpRequest();
-    xobj.overrideMimeType("application/json");
-    xobj.open('GET', 'data/tensorflow.json', true);
-    xobj.onreadystatechange = function() {
-        if (xobj.readyState == 4 && xobj.status == "200") {
-
-            // .open will NOT return a value but simply returns undefined in async mode so use a callback
-            callback(xobj.responseText);
-
-        }
-    }
-    xobj.send(null);
-
-}
-loadJSON(function(res){
-    rawData = JSON.parse(res);
-    o = filterLastYr(rawData)
-    o = numbersOnly(o)
-    drawHistogram(o)
-    // get the data
-    
-})
+axios.get('https://jsonplaceholder.typicode.com/todos/1')
+  .then(response => JSON.stringify(response))
+  .then(json => console.log(json))
 
 function filterLastYr(obj){
     oneYrData = {};
