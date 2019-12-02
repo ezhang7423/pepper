@@ -1,10 +1,21 @@
-axios.get('https://jsonplaceholder.typicode.com/todos/1')
+
+axios.get('api/tensorflow.json')
   .then(response => JSON.stringify(response))
-  .then(json => console.log(json))
+  .then(json => pipe(json))
+
+
+function pipe(rawData){
+    rawData = JSON.parse(rawData)
+    out = filterLastYr(rawData)
+    out = numbersOnly(out)
+    drawHistogram(out)
+}
+
 
 function filterLastYr(obj){
+    rawData = obj.data;
     oneYrData = {};
-    rKeys = Object.keys(obj)
+    rKeys = Object.keys(obj.data)
     for (i = 0; i < rKeys.length; i++){
         iKeys = Object.keys(rawData[rKeys[i]])
         lastYr = iKeys[iKeys.length-1]
