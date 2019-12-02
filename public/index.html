@@ -15,19 +15,25 @@
     <!-- <div id = "demoHistogram"></div> -->
     <form enctype="multipart/form-data" class = 'get-data'>
         
-        <input type="text" name='username' placeholder = "GITHUB USERNAME" >
-        <input type="text" name='token' placeholder = "GITHUB TOKEN" >
-        <input type="text" placeholder = "ORGANIZATION NAME" >
-        <button class='submit'>Submit</button>
+        <input type="text" class= 'username' name='username' placeholder = "GITHUB USERNAME" >
+        <input type="text" class= 'token' name='token' placeholder = "GITHUB TOKEN" >
+        <input type="text" class= 'orgName' name='orgName' placeholder = "ORGANIZATION NAME" >
+        <button type='submit'>Submit</button>
     </form>
     <script src="frontend.js"></script>
     <script>
     let form = document.querySelector('.get-data')
+    let username = document.querySelector('.username')
+    let token = document.querySelector('.token')
+    let orgName = document.querySelector('.orgName')
+   
     form.onsubmit = async (e) => {
         e.preventDefault();
-        let formData = new FormData(form)
-        console.log(formData)
-        let response = await axios.post('api/upload', formData)
+        let response = await axios.post('api/upload',{
+             username: username.value,
+             token: token.value,
+             orgName: orgName.value
+        })
     }
     </script>
 </body>
