@@ -11,8 +11,24 @@
     <script src="node_modules/axios/dist/axios.js"></script>
 </head>
 <body>
-    <h1 align="center" class = "title">How much do Tensorflow Contribuitors commit?</h1>
-    <div id = "demoHistogram"></div>
+    <h1 align="center" class = "title">Find the top coders <span class='small'>(biggest nerds)</span> in your class</h1>
+    <!-- <div id = "demoHistogram"></div> -->
+    <form enctype="multipart/form-data" class = 'get-data'>
+        
+        <input type="text" name='username' placeholder = "GITHUB USERNAME" >
+        <input type="text" name='token' placeholder = "GITHUB TOKEN" >
+        <input type="text" placeholder = "ORGANIZATION NAME" >
+        <button class='submit'>Submit</button>
+    </form>
     <script src="frontend.js"></script>
+    <script>
+    let form = document.querySelector('.get-data')
+    form.onsubmit = async (e) => {
+        e.preventDefault();
+        let formData = new FormData(form)
+        console.log(formData)
+        let response = await axios.post('api/upload', formData)
+    }
+    </script>
 </body>
 </html>

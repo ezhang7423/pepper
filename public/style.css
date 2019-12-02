@@ -5,8 +5,32 @@
     color: white;
     background-color: rgba(30, 30, 30);
 }
-
+input{
+    border: 1px solid white;
+    margin-right: 30px;
+    text-align: left;
+    height: 30px;
+    line-height: 100vh;
+    text-indent: 5px;
+    text-transform: none;
+}
 .title{
     font-size: 60px;
 }
+.small{
+    font-size: 14px;
+}
 
+.submit{
+    padding-top: 3px;
+    text-align: center;
+    border: 1px solid white;
+    text-decoration: none;
+}
+
+.get-data{
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+}
