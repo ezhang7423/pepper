@@ -1,7 +1,7 @@
 
-axios.get('api/tensorflow.json')
-  .then(response => JSON.stringify(response))
-  .then(json => pipe(json))
+// axios.get('api/tensorflow.json')
+//   .then(response => JSON.stringify(response))
+//   .then(json => pipe(json))
 
 
 function pipe(rawData){

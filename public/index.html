@@ -8,33 +8,40 @@
     <link rel="stylesheet" href="style.css">
     <script type="txt/javascript" src="data/tensorflow.json"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script src="node_modules/axios/dist/axios.js"></script>
 </head>
 <body>
-    <h1 align="center" class = "title">Find the top coders <span class='small'>(biggest nerds)</span> in your class</h1>
+    <h1 class = "title">Find the top coders <span class='small'>(biggest nerds)</span> in your class</h1>
     <!-- <div id = "demoHistogram"></div> -->
-    <form enctype="multipart/form-data" class = 'get-data'>
-        
+    <div class = 'get-data'>
         <input type="text" class= 'username' name='username' placeholder = "GITHUB USERNAME" >
         <input type="text" class= 'token' name='token' placeholder = "GITHUB TOKEN" >
         <input type="text" class= 'orgName' name='orgName' placeholder = "ORGANIZATION NAME" >
-        <button type='submit'>Submit</button>
-    </form>
+        <button onclick='submit()'>Submit</button>
+    </div>
+
     <script src="frontend.js"></script>
-    <script>
-    let form = document.querySelector('.get-data')
-    let username = document.querySelector('.username')
-    let token = document.querySelector('.token')
-    let orgName = document.querySelector('.orgName')
-   
-    form.onsubmit = async (e) => {
-        e.preventDefault();
-        let response = await axios.post('api/upload',{
-             username: username.value,
-             token: token.value,
-             orgName: orgName.value
-        })
-    }
-    </script>
+
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    function submit(){
+        startspinner()
+        let username = $(".username").val();
+        let token = $(".token").val();
+        let orgName = $(".orgName").val();
+        if (username === "" || token === "" || orgName === ""){
+            alert("please fill out all the fields");
+            return;
+        }
+        $.post("http://127.0.0.1:3000/api/upload", {
+            username: username,
+            token: token,
+            orgName: orgName,
+        }, function(result, success){
+            console.log(result)
+            endspinner()
+        })
+       
+    }
+</script>
 </html>
